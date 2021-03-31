@@ -10,11 +10,8 @@
 
   <body>
     <div id="app">
-      <button v-on:click="counter++">Increase</button>
-      <button v-on:click="counter--">Decrease</button>
-      <button v-on:click="secondCounter++">Increase Second</button>
-      <p>Counter {{ counter}} | {{ secondCounter }}</p>
-      <p>Counter {{result()}} | {{ output }}</p>
+      <button @click="changeLink">Click to change de link</button>
+      <a :href="link">link</a>
     </div>
     <script src="scripts.js"></script>
   </body>
