@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Class 345</title>
+    <script src="vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <button v-on:click="increase(2, $event)">Click me</button>
+      <p>{{counter}}</p>
+      <p v-on:mousemove="updateCoordinates" style="border: solid 10px">
+        Coordinates: {{x}} / {{y}} -
+        <span v-on:mousemove="dummy">DEAD SPOT dummy function</span>
+        <span v-on:mousemove.stop="">DEAD SPOT .stop</span>
+        <a href="http://vuejs.org/v2/guide/events.html#Event-Modifiers"
+          >Avaiable modifiers on VueJS 2</a
+        >
+        <a href="https://vuejs.org/v2/guide/events.html#Key-Modifiers"
+          >Avaiable key on VueJS 2</a
+        >
+      </p>
+      <input type="text" v-on:keyup.enter.space="alertMe" />
+    </div>
+    <script src="./js/scripts.js" type="text/javascript"></script>
+  </body>
+</html>
