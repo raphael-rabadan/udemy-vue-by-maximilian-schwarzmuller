@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise 4</title>
+    <script src="https://npmcdn.com/vue/dist/vue.js"></script>
+    <link href="styles.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="exercise">
+      <!-- 1) Start the Effect with the Button. The Effect should alternate the "highlight" or "shrink" class on each new setInterval tick (attach respective class to the div with id "effect" below) -->
+      <div>
+        <button @click="startEffect">Start Effect</button>
+        <div id="effect" :class="classDiv1"></div>
+      </div>
+      <!-- 2) Create a couple of CSS classes and attach them via the array syntax -->
+      <div :class="[css1, css2, {bgcolor: attachCss3}]">I got no class :(</div>
+      <!-- 3) Let the user enter a class (create some example classes) and attach it -->
+      <div>
+        <input type="text" v-model="userClass" />
+        <div :class="userClass">DIV 3</div>
+      </div>
+      <!-- 4) Let the user enter a class and enter true/ false for another class (create some example classes) and attach the classes -->
+      <div>
+        <input type="text" v-model="userClassDiv4" />
+        <input type="text" v-model="inputOrNotDiv4" />
+        <div :class="[userClassDiv4, {bgcolor: outputdiv4}]">DIV 4</div>
+      </div>
+      <!-- 5) Repeat 3) but now with values for styles (instead of class names). Attach the respective styles.  -->
+      <div>
+        <input type="text" v-model="bgcolor" />
+        <div :style="{backgroundColor: bgcolor}">DIV 5</div>
+      </div>
+      <!-- 6) Create a simple progress bar with setInterval and style bindings. Start it by hitting the below button. -->
+      <div>
+        <button @click="startBarProgress">Start Progress</button>
+        <div :class="{barstyle:true}" :style="{width: widthAtual*5 + 'px'}">
+          {{widthAtual}}%
+        </div>
+        <button @click="startBarProgress2">Start Progress2</button>
+        <div :class="{barstyle:true}" :style="myBarStyle">{{barwidth}}%</div>
+        <button @click="resetBar">Reset Bar</button>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
