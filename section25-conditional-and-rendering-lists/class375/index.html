@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://npmcdn.com/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="css/foundation.min.css" />
+    <link rel="stylesheet" href="css/app.css" />
+  </head>
+  <body>
+    <div id="game">
+      <section class="row">
+        <div class="small-6 columns">
+          <h1 class="text-center">YOU</h1>
+          <div class="healthbar">
+            <div
+              class="healthbar text-center"
+              :style="[greenBar, playerBar]"
+            >
+              {{game.hpPlayer}}
+            </div>
+          </div>
+        </div>
+        <div class="small-6 columns">
+          <h1 class="text-center">MONSTER</h1>
+          <div class="healthbar">
+            <div
+              class="healthbar text-center"
+              :style="[greenBar, monsterBar]"
+            >
+              {{game.hpMonster}}
+            </div>
+          </div>
+        </div>
+      </section>
+      <section v-if="!game.started" class="row controls">
+        <div class="small-12 columns">
+          <button id="start-game" @click="startGame">START NEW GAME</button>
+        </div>
+      </section>
+      <section v-else class="row controls">
+        <div class="small-12 columns">
+          <template v-if="!gameEnded">
+            <button @click="attack">ATTACK</button>
+            <button @click="specialAttack" :disabled="!hasSpecialAttack">
+              SPECIAL ATTACK
+            </button>
+            <button @click="heal">HEAL</button>
+            <button @click="finishGame">GIVE UP</button>
+          </template>
+          <template v-else>
+            <div>GAME ENDED!</div>
+            <br />
+            <button @click="finishGame">RESTART</button>
+          </template>
+        </div>
+      </section>
+      <section>
+        <section v-if="game.started" class="row log">
+          <div class="small-12 columns">
+            <ul v-for="round in game.rounds">
+              <li :style="[cssLine, cssBlue]">
+                <template v-if="round.playerAction==='Heal'">
+                  PLAYER HEALS HIMSELF FOR {{round.playerHeal}} ~Heal~
+                </template>
+                <template v-if="round.playerAction==='Attack'">
+                  PLAYER HITS MONSTER FOR {{round.monsterDmgTaken}}
+                </template>
+                <template v-if="round.playerAction==='Special Attack'">
+                  PLAYER HITS MONSTER FOR {{round.monsterDmgTaken}} ~Special
+                  Attack~
+                </template>
+              </li>
+              <li :style="[cssLine, cssRed]">
+                MONSTER HITS PLAYER FOR {{round.playerDmgTaken}}
+              </li>
+            </ul>
+          </div>
+        </section>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
