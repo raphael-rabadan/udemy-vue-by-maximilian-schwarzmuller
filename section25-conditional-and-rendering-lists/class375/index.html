@@ -17,7 +17,7 @@
           <div class="healthbar">
             <div
               class="healthbar text-center"
-              :style="[greenBar, playerBar]"
+              :style="[greenBar, {width: game.hpPlayer + '%'}]"
             >
               {{game.hpPlayer}}
             </div>
@@ -28,7 +28,7 @@
           <div class="healthbar">
             <div
               class="healthbar text-center"
-              :style="[greenBar, monsterBar]"
+              :style="[greenBar, {width: game.hpMonster + '%'}]"
             >
               {{game.hpMonster}}
             </div>
@@ -43,12 +43,12 @@
       <section v-else class="row controls">
         <div class="small-12 columns">
           <template v-if="!gameEnded">
-            <button @click="attack">ATTACK</button>
-            <button @click="specialAttack" :disabled="!hasSpecialAttack">
+            <button id="attack" @click="attack">ATTACK</button>
+            <button id="special-attack" @click="specialAttack" :disabled="!hasSpecialAttack">
               SPECIAL ATTACK
             </button>
-            <button @click="heal">HEAL</button>
-            <button @click="finishGame">GIVE UP</button>
+            <button id="heal" @click="heal">HEAL</button>
+            <button id="give-up" @click="finishGame">GIVE UP</button>
           </template>
           <template v-else>
             <div>GAME ENDED!</div>

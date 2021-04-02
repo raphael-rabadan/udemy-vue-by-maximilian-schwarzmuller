@@ -6,12 +6,6 @@ new Vue({
       margin: 0,
       color: "white",
     },
-    monsterBar: {
-      width: 100,
-    },
-    playerBar: {
-      width: 100,
-    },
     cssLine: {
       padding: "2px",
       marginBottom: "1px",
@@ -27,15 +21,6 @@ new Vue({
       color: "blue",
     },
 
-    initialArray: [
-      // {
-      //   number: 0,
-      //   playerAction: "",
-      //   playerDmgTaken: 0,
-      //   playerHeal: 0,
-      //   monsterDmgTaken: 0,
-      // },
-    ],
     game: {
       started: false,
       specialAttack: 1,
@@ -53,28 +38,22 @@ new Vue({
     },
   },
   methods: {
-    startGame: function () {
-      this.game.started = true
+    resetGame: function () {
       this.game.specialAttack = 1
       this.game.hpPlayer = 100
       this.game.hpMonster = 100
-      this.monsterBar.width = this.game.hpMonster * 3.01 + "px"
-      this.playerBar.width = this.game.hpPlayer * 3.01 + "px"
       this.game.rounds = []
+    },
+    startGame: function () {
+      this.game.started = true
+      this.resetGame()
     },
     finishGame: function () {
       this.game.started = false
-      this.game.specialAttack = 1
-      this.game.hpPlayer = 100
-      this.game.hpMonster = 100
-      this.monsterBar.width = this.game.hpMonster * 3.01 + "px"
-      this.playerBar.width = this.game.hpPlayer * 3.01 + "px"
-      this.game.rounds = []
+      this.resetGame()
     },
     registerRound: function (roundObj) {
       this.game.rounds.push(roundObj)
-      this.monsterBar.width = this.game.hpMonster * 3.3 + "px"
-      this.playerBar.width = this.game.hpPlayer * 3.3 + "px"
     },
     attack: function (type) {
       const playerAttack = attackFormula()
