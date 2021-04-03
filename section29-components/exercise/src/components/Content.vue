@@ -14,7 +14,7 @@
 import Server from "./Server.vue"
 export default {
   components: {
-    Server: Server
+    Server
   }
 }
 </script>

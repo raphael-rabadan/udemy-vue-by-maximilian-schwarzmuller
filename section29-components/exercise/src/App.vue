@@ -14,9 +14,9 @@ import Content from "./components/Content.vue"
 import Footer from "./components/Footer.vue"
 export default {
   components: {
-    Header: Header,
-    Content: Content,
-    Footer: Footer
+    Header,
+    Content,
+    Footer
   }
 }
 </script>
