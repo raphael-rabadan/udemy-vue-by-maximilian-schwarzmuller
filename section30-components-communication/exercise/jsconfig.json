@@ -1,0 +1,4 @@
+{
+  "include": ["./src/**/*"],
+  "vetur.format.options.semi": false
+}
