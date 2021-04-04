@@ -1,6 +1,6 @@
 <template>
-  <li class="list-group-item">
-    <a @click="serverClicked"> Server #{{ server.id }} - {{ server.status }}</a>
+  <li class="list-group-item" @click="serverClicked" style="cursor: pointer">
+    Server #{{ server.id }} - {{ server.status }}
   </li>
 </template>
 

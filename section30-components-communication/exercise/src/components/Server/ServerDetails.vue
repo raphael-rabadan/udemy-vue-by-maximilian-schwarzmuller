@@ -25,7 +25,7 @@ export default {
         this.showServer === true
       }
       return this.serverDetails.id === ""
-        ? "Server Details are currently not updated"
+        ? "Please select a server on the list"
         : `The status of the server #${this.serverDetails.id} is ${this.serverDetails.status}`
     },
     updateStatus() {
