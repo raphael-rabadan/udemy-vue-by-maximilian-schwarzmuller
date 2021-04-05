@@ -12,6 +12,9 @@
 import { fruitMixin } from "./fruitMixin.js"
 export default {
   mixins: [fruitMixin],
+  created() {
+    console.log("list created")
+  },
 }
 </script>
 
