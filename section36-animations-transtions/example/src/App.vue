@@ -4,7 +4,7 @@
       <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
         <h1>Animations</h1>
         <hr />
-        <select v-model="alertAnimation">
+        <select v-model="alertAnimation" class="form-control">
           <option value="fade">Fade</option>
           <option value="slide">Slide</option>
         </select>
@@ -24,6 +24,14 @@
           leave-active-class="animate__animated animate__bounce"
         >
           <div class="alert alert-info" v-if="show">This is some info</div>
+        </transition>
+        <transition appear :name="alertAnimation" mode="out-in">
+          <div class="alert alert-info" v-if="show" key="info">
+            This is some info
+          </div>
+          <div class="alert alert-warning" v-else key="warn">
+            This is some info
+          </div>
         </transition>
       </div>
     </div>
@@ -68,7 +76,7 @@ export default {
 }
 .slide-leave-active {
   animation: slide-out 1s ease-out forwards;
-  transition: opacity 3s;
+  transition: opacity 1s;
   opacity: 0;
 }
 
