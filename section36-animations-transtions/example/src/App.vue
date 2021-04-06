@@ -8,13 +8,16 @@
           Show Alert
         </button>
         <hr />
-        <transition name="fade">
+        <transition appear name="fade">
           <div class="alert alert-info" v-show="show">This is some info</div>
         </transition>
         <transition name="slide" type="animation">
           <div class="alert alert-info" v-if="show">This is some info</div>
         </transition>
-        <transition name="fade" appear>
+        <transition
+          enter-active-class="animate__animated animate__shakeX"
+          leave-active-class="animate__animated animate__bounce"
+        >
           <div class="alert alert-info" v-if="show">This is some info</div>
         </transition>
       </div>
