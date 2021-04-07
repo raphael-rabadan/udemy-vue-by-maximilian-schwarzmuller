@@ -23,6 +23,8 @@
         </div>
         <button class="btn btn-primary" @click.prevent="submit">Submit</button>
         <hr />
+        <input type="text" class="form-control" v-model="node" />
+        <br /><br />
         <button class="btn btn-primary" @click.prevent="fetchData">
           Get Data
         </button>
@@ -45,22 +47,38 @@ export default {
         email: "",
       },
       users: [],
+      resource: {},
+      node: "data",
     }
   },
   methods: {
     submit() {
-      this.$http.post("", this.user).then(
-        (response) => {
-          console.log(response)
-        },
-        (error) => {
-          console.log(error)
-        }
-      )
+      //   this.$http.post("data.json", this.user).then(
+      //     (response) => {
+      //       console.log(response)
+      //     },
+      //     (error) => {
+      //       console.log(error)
+      //     }
+      //   )
+      //this.resource.save({}, this.user)
+      this.resource.saveAlt(this.user)
     },
     fetchData() {
-      this.$http
-        .get("")
+      //   this.$http
+      //     .get("data.json")
+      //     .then((res) => {
+      //       return res.json()
+      //     })
+      //     .then((data) => {
+      //       const resultArray = []
+      //       for (let key in data) {
+      //         resultArray.push(data[key])
+      //       }
+      //       this.users = resultArray
+      //     })
+      this.resource
+        .getData({ node: this.node })
         .then((res) => {
           return res.json()
         })
@@ -72,6 +90,16 @@ export default {
           this.users = resultArray
         })
     },
+  },
+  created() {
+    const customActions = {
+      saveAlt: {
+        method: "POST",
+        url: "alternative.json",
+      },
+      getData: { method: "GET" },
+    }
+    this.resource = this.$resource("{node}.json", {}, customActions)
   },
 }
 </script>
