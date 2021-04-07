@@ -27,7 +27,7 @@
           Get Data
         </button>
         <ul class="list-group">
-          <li class="list-group-item" v-for="u in users">
+          <li class="list-group-item" v-for="(u, i) in users" :key="i">
             {{ u.username }} {{ u.email }}
           </li>
         </ul>
