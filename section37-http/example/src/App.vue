@@ -22,6 +22,15 @@
           />
         </div>
         <button class="btn btn-primary" @click.prevent="submit">Submit</button>
+        <hr />
+        <button class="btn btn-primary" @click.prevent="fetchData">
+          Get Data
+        </button>
+        <ul class="list-group">
+          <li class="list-group-item" v-for="u in users">
+            {{ u.username }} {{ u.email }}
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -35,6 +44,7 @@ export default {
         username: "",
         email: "",
       },
+      users: [],
     }
   },
   methods: {
@@ -52,6 +62,20 @@ export default {
             console.log(error)
           }
         )
+    },
+    fetchData() {
+      this.$http
+        .get("https://vuejs-http-2d882-default-rtdb.firebaseio.com/data.json")
+        .then((res) => {
+          return res.json()
+        })
+        .then((data) => {
+          const resultArray = []
+          for (let key in data) {
+            resultArray.push(data[key])
+          }
+          this.users = resultArray
+        })
     },
   },
 }
